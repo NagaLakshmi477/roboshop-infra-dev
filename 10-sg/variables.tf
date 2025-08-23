@@ -10,12 +10,6 @@ variable "environment" {
   default = "dev"
 }
 
-variable "vpc_id" {
-  
-}
-
-
-
 variable "project" {
   default = "frontend"
 }
