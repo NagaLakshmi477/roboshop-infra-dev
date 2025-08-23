@@ -13,3 +13,7 @@ variable "environment" {
 variable "project" {
   default = "frontend"
 }
+
+variable "sg_tags" {
+  default = {}
+}
