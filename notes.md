@@ -24,3 +24,49 @@ we will read from data.tf files
 
 # now we have sg gruops id now we can crete ec2 instances
 
+
+---------------------
+ROBOSHOP-Project
+======================
+- both backend and database tier are in priavte subnets so they don't have public IP's
+- How we can check if any problem in those 2 subnets
+we have multiple solutions:
+---------------------------
+VPN
+Bastion host /jump host: 
+=======================
+It is a normal instances. It enables ingress traffic . we can install required softwares.
+
+Laptop ---> aws acoount ----> vpc ---> public subnet (bastion host) ----> ec2 ---> private subnet
+
+there are 2 types of modules
+--------------------------
+1. developed our own modules
+2. open source modules
+
+custom module:
+===================
+pros:
+-----
+1. evarything is in our control
+cons:
+-----
+we need to write lot of code
+we need to maintain everyhing
+
+Open source module:
+==================
+pros:
+----
+no need to develop everything and maintain, directly use
+
+cons:
+----
+not in our control
+need to depend on comminity
+
+bastion creation:
+=========================
+we need sg for this also
+we need allow port number 22
+
