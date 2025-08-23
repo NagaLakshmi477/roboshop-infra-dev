@@ -11,7 +11,7 @@ variable "environment" {
 }
 
 variable "project" {
-  default = "frontend"
+  default = "roboshop"
 }
 
 variable "sg_tags" {
