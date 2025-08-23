@@ -17,3 +17,12 @@ variable "project" {
 variable "sg_tags" {
   default = {}
 }
+
+
+variable "bastion_sg_name" {
+  default = "bastion"
+}
+
+variable "bastion_sg_description" {
+  default = "created sg for bastion"
+}
