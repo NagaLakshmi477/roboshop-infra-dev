@@ -75,5 +75,7 @@ vpc_ids = [
   "subnet-028e880f61f9b0baa",
 ]
 
-
+subnet-03b4aa2e7908fbd6f,028e880f61f9b0baa ====> for terraform it is string  but aws terraform it is string list
+\so get the subnets for id's 1 (region1)
+we need to convert into list and take the 1st one 
 
