@@ -70,3 +70,10 @@ bastion creation:
 we need sg for this also
 we need allow port number 22
 
+vpc_ids = [
+  "subnet-03b4aa2e7908fbd6f",
+  "subnet-028e880f61f9b0baa",
+]
+
+
+
