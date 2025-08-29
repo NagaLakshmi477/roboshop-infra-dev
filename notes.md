@@ -151,3 +151,110 @@ instances attcahed with these sg sg-tjhgfyg0 are allaowed to connect port no 80
 from now we will use custome modules
 
 
+here every time devloper needs to login to bastion host to check the applictaion so instaed of we wii use VPN
+
+how to create open VPN:
+----------------------------
+ec2---> comminuty tab ----> openvpn access ---> select (community image) ---> key pair ---> 
+
+setup vp --->session40 --->1.11.0 min --->
+install openvpn
+for vpn also we need to create sg 
+
+
+VPN:
+========
+we need key that needs to give in vpn floder
+
+Headless mode:
+==============
+openpin.sh --> taking from chatgpt ---> to configure openvpn withoput manuval
+
+terraform ---> infra creation
+ansible ---> configuration managemnt
+
+so we can integrate terraform and ansible together
+
+mongodb:
+---------
+vpn ----> mongodb 
+mongodb should should allow connection from VPN
+22 and 27017
+
+# now instance is created we need integrate with ansible
+# using remote exec we will connect and trigger the ansible
+
+Null resource:
+-----------------
+It is doesn't create the instances. It will fallow the terraform lifecycle. It will not do anything it will implement the standard lifecycle.
+It is used to connect the instances
+
+Null resource will not create resouce but it fallows the standard lifecycle of terraform. You can use null resource to connect instances
+
+1. connect to the instances (anisblepull)
+2. copy the scrpit
+3. execute the scrpit
+
+
+Ansible server ---> node 1
+                    node 2
+
+
+
+      ansible pull ---> mongodb instance(If i install ansible here) ---> this is called ansible server
+so there is a command called ansible pull
+
+pulls playbook from a VCS and execute them on target host
+
+Terraform file provisioner
+========================
+
+instead of writing separate file like (mongodb,redis,mysql,rabbitmq). we will change the mongodb file to bootstrap.sh
+
+redis ----> 6379
+mysql ----> 3306
+rabbitmq ---> 5672
+
+
+IAM:
+=============
+user: ---> human --> credentails will leak
+------
+administrator access
+security credentials
+aws configure 
+ec2 ---> SSM parameter ----> 
+
+
+ROLE: ---> not human
+------
+roles are created for non human
+EC2 ----> create role
+attach permissions to this role
+attach role to ec2
+
+ALB --->listener ---> rule ---> target group
+ALB(internal) ----> listerner(80) ----> fixede response
+create role:
+----------
+IAM ---> roles ----> create ---> aws service ---> EC2 ---> next --> admin acess ---> rolename (Ec2RoleToFetchSSMparams) ---> create
+
+we need to take this role and attach to EC2 server
+
+we can attach the role to any instance then no need to confugure aws
+
+How to attach:
+--------------
+Ec2 ---> select one Ec2 ---> add --> SG ---> MOdify IAM role ---> select ---> update
+
+Backend Components:
+-------------------
+catalogue.backend.lakshmireddy.site ---> It will forwarded to catalogue target group
+
+How we can create record
+-----------------------
+*.backend-lakshmireddy.site --->ALB
+
+create dns record: 
+with .backend ---name
+value ---> ailas to application and classic load blancer and select region(us-east-1) Ity will display our load blancer

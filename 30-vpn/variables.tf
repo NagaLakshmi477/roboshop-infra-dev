@@ -5,11 +5,3 @@ variable "project" {
 variable "environment" {
   default = "dev"
 }
-
-variable "zone_id" {
-  
-}
-
-variable "zone_name" {
-  default = "lakshmireddy.site"
-}
