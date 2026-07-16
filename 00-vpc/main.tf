@@ -1,21 +1,15 @@
 module "vpc" {
   source = "git::https://github.com/NagaLakshmi477/terraform-aws-vpc.git?ref=main"
-  environment = var.environment
-  project = var.project
-  public_subnet_cidrs = var.public_subnet_cidrs
-  private_subnet_cidrs = var.private_subnet_cidrs
-  database_subnet_cidrs = var.database_subnet_cidrs
+  project              = var.project
+  environment          = var.environment
+  public_subnet_cidr   = var.pub_subnet
+  private_subnet_cidr  = var.pri_subnet
+  database_subnet_cidr = var.db_subnet
   is_peering_required = true
 }
 
-# getting the vpcid
+# here we have all code in source right so we need to give module and modulename
 
 # output "vpc_id" {
 #   value = module.vpc.vpc_id
 # }
-
-# print the public subnets ids
-output "vpc_ids" {
-  value = module.vpc.public_subnet_ids
-  
-}
