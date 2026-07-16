@@ -22,10 +22,10 @@ SSM parameter creation
 -----------------------
 aws system manager -----> parameter store ---> create parameter ----> /roboshop/dev/vpc ----> string -----> create 
 
-# now after cr4eating parameter.tf file we will get the vpc id now we need to take that id for sg
+- now after cr4eating parameter.tf file we will get the vpc id now we need to take that id for sg
 we will read from data.tf files 
 
-# now we have sg gruops id now we can crete ec2 instances
+- now we have sg gruops id now we can crete ec2 instances
 
 
 ---------------------
