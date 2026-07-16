@@ -18,4 +18,10 @@ variable "project" {
 variable "environment" {
   default = "dev"
 }
+variable "bastion_sg_name" {
+  default = "bastion"
+}
 
+variable "bastion_sg_discription" {
+  default = "This is bastion "
+}
