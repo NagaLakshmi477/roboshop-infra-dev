@@ -91,12 +91,12 @@ if Backend work ----> Backend team
 if DB work ----> forward to db team
 
 listeners ---> means port numbers
-here frontend is exposed to public so we can use 443(https)
+here frontend is exposed to public so we need to make it secure so we can use 443(https)
 in backedn we will not exposed to public so (80) is enough
 
 manual creation for load blancer:
 -------------------------------------
-lanch ec2(2) ---> install and start nginx
+lanch ec2(2) ---> user data --> install and start nginx
 
 load blancing ---> target group ---> nginx(name) ---> healths checks (2) --tinout 15 sec =--> unheclath 3 checks ---> create ---> pending gruop --> create (This is for frontend)
 
@@ -122,7 +122,7 @@ timeout ---> 5 sec -=-> max
 
 
 -------------------------------------------------------------------
-$ for i in 00-vpc/ 10-sg/ 20-bastion/ ; do cd $i; terraform apply -auto-approve ; cd ../; done
+ for i in 00-vpc/ 10-sg/ 20-bastion/ ; do cd $i; terraform apply -auto-approve ; cd ../; done
 
 for backend we need load blancer
 we have 2 types of infra
@@ -135,12 +135,14 @@ diagram(robosho-infra-dev):
 ===============================
 for load blancers do we need to create SG ---> yes --->(frontend ---> load blancer ----> backend)
 
-so this is private vload blancer so we can't give aces to public but for testing purpose ----> for private servers acess we have created bastion host ---->  for bastions also we need to create sg ----> 
-what is the inbound rule for load blancer ----> 80
+so this is private load blancer so we can't give aces to public but for testing purpose ----> for private servers acess we have created bastion host ---->  for bastions also we need to create sg ----> 
+bastion--> sg
+load blancer --> sg
+what is the inbound rule for load blancer ----> 80 backend
 allow port 80 from bastion IP
 
-if batsion IP is restarted, IP will chanages in that case we use elastic Ip and attach to bastion host.
-
+if batsion IP is restarted, IP will chanages in that case we use elastic Ip and attach to bastion host. but it has cost
+but we have another way
 a sg is attached to bastion host -- sg-tjhgfyg0
 a sg is attcahed to load blancer host ---sg-hlkmdrglkj
 
@@ -153,6 +155,8 @@ target IP: instaed of giving bastion Ip we can attache sg-tjhgfyg0
 instances attcahed with these sg sg-tjhgfyg0 are allaowed to connect port no 80
 from now we will use custome modules
 
+- create sg for backend alb
+- now we will create load blancer on private subnet
 
 here every time devloper needs to login to bastion host to check the applictaion so instaed of we wii use VPN
 
