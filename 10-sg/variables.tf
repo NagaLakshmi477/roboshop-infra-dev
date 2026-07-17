@@ -25,3 +25,7 @@ variable "bastion_sg_name" {
 variable "bastion_sg_discription" {
   default = "This is bastion "
 }
+
+variable "mongodb_ports_vpn" {
+  default = ["22","27017"]
+}
