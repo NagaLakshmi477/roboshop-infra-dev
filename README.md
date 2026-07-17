@@ -179,7 +179,8 @@ we need key that needs to give in vpn floder
 
 Headless mode:
 ==============
-openpin.sh --> taking from chatgpt ---> to configure openvpn withoput manuval
+openvpn.sh --> taking from chatgpt ---> to configure openvpn withoput manuval
+
 
 terraform ---> infra creation
 ansible ---> configuration managemnt
