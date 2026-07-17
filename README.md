@@ -122,7 +122,7 @@ timeout ---> 5 sec -=-> max
 
 
 -------------------------------------------------------------------
- for i in 00-vpc/ 10-sg/ 20-bastion/ ; do cd $i; terraform apply -auto-approve ; cd ../; done
+ for i in 00-vpc/ 10-sg/ 20-bastion/ 50-backend-alb/  ; do cd $i; terraform apply -auto-approve ; cd ../; done
 
 for backend we need load blancer
 we have 2 types of infra
@@ -162,7 +162,11 @@ here every time devloper needs to login to bastion host to check the applictaion
 
 how to create open VPN:
 ----------------------------
-ec2---> comminuty tab ----> openvpn access ---> select (community image) ---> key pair ---> 
+ec2---> comminuty ami ----> OpenVPN Access Server ---> select (community image) ---> key pair ---> select roboshop dev on network and --> sg --> vpn ---> create
+login into bas -->
+chmod 400 ~/nagalakshmi/devopsfile
+
+ssh -i ~/nagalakshmi/devopsfile openvpnas@98.91.190.10
 
 setup vp --->session40 --->1.11.0 min --->
 install openvpn

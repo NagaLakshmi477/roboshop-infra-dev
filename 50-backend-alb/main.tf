@@ -1,49 +1,34 @@
 module "backend_alb" {
   source = "terraform-aws-modules/alb/aws"
+  version = "9.13.0"
 
   name    = "${var.project}-${var.environment}-backend-alb"
   vpc_id  = local.vpc_id
   subnets = local.private_subnet_ids
   # we already have seurity group
   create_security_group = false
-  # security_groups = 
-  access_logs = {
-    bucket = "my-alb-logs"
-  }
-
-  listeners = {
-    ex-http-https-redirect = {
-      port     = 80
-      protocol = "HTTP"
-      redirect = {
-        port        = "443"
-        protocol    = "HTTPS"
-        status_code = "HTTP_301"
-      }
+  security_groups = [local.backend_alb_sg_id]
+  internal = true
+  tags = merge(
+    local.common_tags,
+    {
+      Name = "${var.project}-${var.environment}-backend-alb"
     }
-    ex-https = {
-      port            = 443
-      protocol        = "HTTPS"
-      certificate_arn = "arn:aws:iam::123456789012:server-certificate/test_cert-123456789012"
+  )
+}
 
-      forward = {
-        target_group_key = "ex-instance"
-      }
-    }
+
+resource "aws_lb_listener" "backend_alb" {
+  load_balancer_arn = module.backend_alb.arn
+  port              = "80"
+  protocol          = "HTTP"
+ 
+  default_action {
+    type             = "fixed-response"
+    fixed_response {
+      content_type = "text/html"
+      message_body = "<h1>Fixed response content fdrom backend ALB </h1>"
+      status_code  = "200"
   }
-
-  target_groups = {
-    ex-instance = {
-      name_prefix      = "h1"
-      protocol         = "HTTP"
-      port             = 80
-      target_type      = "instance"
-      target_id        = "i-0f6d38a07d50d080f"
-    }
-  }
-
-  tags = {
-    Environment = "Development"
-    Project     = "Example"
   }
 }
