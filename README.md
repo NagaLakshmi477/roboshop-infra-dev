@@ -181,7 +181,11 @@ Headless mode:
 ==============
 openvpn.sh --> taking from chatgpt ---> to configure openvpn withoput manuval
 
+https://54.87.244.18:943/admin/
+username:openvpn
+pass:Openvpn@123
 
+vpn settings --> 
 terraform ---> infra creation
 ansible ---> configuration managemnt
 
@@ -193,8 +197,8 @@ vpn ----> mongodb
 mongodb should should allow connection from VPN
 22 and 27017
 
-# now instance is created we need integrate with ansible
-# using remote exec we will connect and trigger the ansible
+- now instance is created we need integrate with ansible
+- using remote exec we will connect and trigger the ansible
 
 Null resource:
 -----------------

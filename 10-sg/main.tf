@@ -135,6 +135,7 @@ module "mongodb" {
 
 
 resource "aws_security_group_rule" "mongodb_vpn_shh" {
+  count = length(var.mongodb_ports_vpn)
   type              = "ingress"
   from_port         = var.mongodb_ports_vpn[count.index]
   to_port           = var.mongodb_ports_vpn[count.index]
